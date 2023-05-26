@@ -25,7 +25,7 @@ class TelaInicial extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Image.asset(
-              'assets/drone_1.jpg', // Insira o caminho para o arquivo de imagem do logo
+              'assets/drone_1.jpg',
               height: 100,
             ),
             const SizedBox(height: 16.0),
@@ -50,30 +50,40 @@ class TelaInicial extends StatelessWidget {
             const Text('Plantações monitoradas: XX'),
             const Text('Última atualização: XX/XX/XXXX'),
             const SizedBox(height: 32.0),
-            ElevatedButton(
-              onPressed: () {
-                // Navegar para a tela de visualizar plantações
-                //navigator.push(context, MaterialPageRoute(builder: (context) =>TelaVisualizarPlantaçoes()),;
-              },
-              child: const Text('Visualizar Plantações'),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navegar para a tela de visualizar plantações
+                },
+                child: const Text('Visualizar Plantações'),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                // Navegar para a tela do mapa de drones
-              },
-              child: const Text('Mapa de Drones'),
+            const SizedBox(height: 8.0),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navegar para a tela do mapa de drones
+                },
+                child: const Text('Mapa de Drones'),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                // Navegar para a tela de relatórios e análises
-              },
-              child: const Text('Relatórios e Análises'),
+            const SizedBox(height: 8.0),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navegar para a tela de relatórios e análises
+                },
+                child: const Text('Relatórios e Análises'),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                // Navegar para a tela de configurações
-              },
-              child: const Text('Configurações'),
+            const SizedBox(height: 8.0),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navegar para a tela de configurações
+                },
+                child: const Text('Configurações'),
+              ),
             ),
           ],
         ),
