@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(
+    MaterialApp(
+      home: Directionality(
+        textDirection: TextDirection.ltr,
+        child: TelaInicial(),
+      ),
+    ),
+  );
+}
+
 class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,7 +25,7 @@ class TelaInicial extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Image.asset(
-              'assets/logo.png', // Insira o caminho para o arquivo de imagem do logo
+              'assets/drone_1.jpg', // Insira o caminho para o arquivo de imagem do logo
               height: 100,
             ),
             const SizedBox(height: 16.0),
@@ -42,6 +53,7 @@ class TelaInicial extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Navegar para a tela de visualizar plantações
+                //navigator.push(context, MaterialPageRoute(builder: (context) =>TelaVisualizarPlantaçoes()),;
               },
               child: const Text('Visualizar Plantações'),
             ),
