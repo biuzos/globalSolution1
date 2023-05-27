@@ -11,6 +11,16 @@ void main() {
   );
 }
 
+String getImagePathFromId(String id) {
+     Map<String, String> idToImagePath = {
+    'image1': 'assets/drone2.jpg',
+    'image2': 'assets/drone3.jpg',
+    'image3': 'assets/drone4.jpg',
+    'image4': 'assets/drone5.jpg',
+  };
+  return idToImagePath[id] ?? '';
+}
+
 class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -53,7 +63,12 @@ class TelaInicial extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  // Navegar para a tela de visualizar plantações
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TelaVisualizacaoImagens(),
+                    ),
+                  );
                 },
                 child: const Text('Visualizar Plantações'),
               ),
@@ -86,6 +101,78 @@ class TelaInicial extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class TelaVisualizacaoImagens extends StatelessWidget {
+  String generateImageIdFromCoordinates(String imagePath) {
+    // Example implementation: Generating ID from the last two segments of the image path
+    final pathSegments = imagePath.split('/');
+    final imageName = pathSegments.last;
+    final id = imageName.substring(0, imageName.indexOf('.'));
+    return id;
+  }
+  final List<String> droneImages = [
+    'assets/drone2.jpg',
+    'assets/drone3.jpg',
+    'assets/drone4.jpg',
+    'assets/drone5.jpg',
+    // Adicione mais imagens aqui
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Visualização de Imagens'),
+      ),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(16.0),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16.0,
+          mainAxisSpacing: 16.0,
+        ),
+        itemCount: droneImages.length,
+        itemBuilder: (context, index) {
+          final image = droneImages[index];
+          final imageId = generateImageIdFromCoordinates(image);
+          return GestureDetector(
+            onTap: () { Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TelaImagemDetalhada(imageId: imageId),
+                ),
+              );
+            },
+            child: Image.asset(
+              image,
+              fit: BoxFit.cover,
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+class TelaImagemDetalhada extends StatelessWidget {
+  final String imageId;
+
+  const TelaImagemDetalhada({required this.imageId});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Imagem $imageId'),
+      ),
+      body: Center(
+        child: Image.asset(
+          getImagePathFromId(imageId),
+          fit: BoxFit.contain,
         ),
       ),
     );
