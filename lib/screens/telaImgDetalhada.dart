@@ -11,7 +11,7 @@ class TelaImagemDetalhada extends StatelessWidget {
     required this.imageId,
     required this.location,
     required this.crop,
-    required this.area,
+    required this.area, 
   });
 
   @override
@@ -26,7 +26,7 @@ class TelaImagemDetalhada extends StatelessWidget {
         children: [
           Image.asset(
             getImagePathFromId(imageId),
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
               print('Error loading image: $error');
               return const SizedBox.shrink();
@@ -43,11 +43,10 @@ class TelaImagemDetalhada extends StatelessWidget {
 
   String getImagePathFromId(String id) {
     Map<String, String> idToImagePath = {
-      'image1': 'assets/drone2.jpg',
-      'image2': 'assets/drone3.jpg',
-      'image3': 'assets/drone4.jpeg',
-      'image4': 'assets/drone5.jpg',
-      // Adicione mais mapeamentos de ID-caminho conforme necessário
+      'drone2': 'assets/drone2.jpg',
+      'drone3': 'assets/drone3.jpg',
+      'drone4': 'assets/drone4.jpeg',
+      'drone5': 'assets/drone5.jpg',
     };
     return idToImagePath[id] ?? '';
   }

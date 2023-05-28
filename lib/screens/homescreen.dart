@@ -16,7 +16,7 @@ class TelaInicial extends StatelessWidget {
           children: [
             Image.asset(
               'assets/drone1.jpg',
-              height: 100,
+              height: 150,
             ),
             const SizedBox(height: 16.0),
             const Text(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'telaImgDetalhada.dart';
 
-
 class TelaVisualizacaoImagens extends StatelessWidget {
   String generateImageIdFromCoordinates(String imagePath) {
     final pathSegments = imagePath.split('/');
@@ -20,22 +19,22 @@ class TelaVisualizacaoImagens extends StatelessWidget {
   ];
 
   final Map<String, Map<String, dynamic>> imageDetails = {
-    'image1': {
+    'drone1': {
       'location': 'Mato Grosso',
       'crop': 'Soja',
       'area': 10.5,
     },
-    'image2': {
+    'drone2': {
       'location': 'São Paulo',
       'crop': 'Milho',
       'area': 8.2,
     },
-    'image3': {
+    'drone3': {
       'location': 'Paraná',
       'crop': 'Trigo',
       'area': 6.7,
     },
-    'image4': {
+    'drone4': {
       'location': 'Goiás',
       'crop': 'Algodão',
       'area': 12.1,
@@ -62,28 +61,28 @@ class TelaVisualizacaoImagens extends StatelessWidget {
           final imageId = generateImageIdFromCoordinates(image);
           final Map<String, dynamic> details = imageDetails[imageId] ?? {};
           return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TelaImagemDetalhada(
-                    imageId: imageId,
-                    location: details['location'] ?? '',
-                    crop: details['crop'] ?? '',
-                    area: details['area'] ?? 0.0,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TelaImagemDetalhada(
+                      imageId: imageId,
+                      location: details['location'] ?? '',
+                      crop: details['crop'] ?? '',
+                      area: details['area'] ?? 0.0,
+                    ),
                   ),
-                ),
-              );
-            },
-            child: Image.asset(
-              image,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                print('Error loading image: $error');
-                return const SizedBox.shrink();
+                );
               },
-            ),
-          );
+              child: Center(
+                  child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  print('Error loading image: $error');
+                  return const SizedBox.shrink();
+                },
+              )));
         },
       ),
     );
