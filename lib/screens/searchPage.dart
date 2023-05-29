@@ -38,6 +38,20 @@ class _TelaHistoricoState extends State<TelaHistorico> {
       crop: 'Milho',
       area: 8.2,
     ),
+       PlantImage(
+      id: 'ID21364408',
+      imagePath: 'assets/drone4.jpeg',
+      location: 'Goiás',
+      crop: 'Algodão',
+      area: 12.1,
+    ),
+       PlantImage(
+      id: 'ID18974312',
+      imagePath: 'assets/drone3.jpg',
+      location: 'Bahia',
+      crop: 'Café',
+      area: 5.8,
+    ),
     // Adicione mais imagens aqui
   ];
 
