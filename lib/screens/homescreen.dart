@@ -58,31 +58,13 @@ class TelaInicial extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  // Navegar para a tela do mapa de drones
-                },
-                child: const Text('Mapa de Drones'),
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => TelaHistorico()),
-      );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TelaHistorico()),
+                  );
                   // Navegar para a tela de relatórios e análises
                 },
                 child: const Text('Relatórios e Análises'),
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navegar para a tela de configurações
-                },
-                child: const Text('Configurações'),
               ),
             ),
           ],
