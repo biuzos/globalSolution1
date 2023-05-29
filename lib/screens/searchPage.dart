@@ -71,19 +71,19 @@ class _TelaHistoricoState extends State<TelaHistorico> {
     super.dispose();
   }
 
-  void filterImages(String searchTerm) {
-    setState(() {
-      if (searchTerm.isEmpty) {
-        filteredImages = images;
-      } else {
-        // Filtra as imagens com base no termo de busca (pode ser ajustado conforme necessário)
-        filteredImages = images.where((image) {
-          return image.location.toLowerCase().contains(searchTerm.toLowerCase()) ||
-              image.crop.toLowerCase().contains(searchTerm.toLowerCase());
-        }).toList();
-      }
-    });
-  }
+void filterImages(String searchTerm) {
+  setState(() {
+    if (searchTerm.isEmpty) {
+      filteredImages = images;
+    } else {
+      filteredImages = images.where((image) {
+        return image.id.toLowerCase().contains(searchTerm.toLowerCase()) ||
+            image.location.toLowerCase().contains(searchTerm.toLowerCase()) ||
+            image.crop.toLowerCase().contains(searchTerm.toLowerCase());
+      }).toList();
+    }
+  });
+}
 
   @override
   Widget build(BuildContext context) {
