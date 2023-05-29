@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_gs1/screens/searchPage.dart';
 import 'package:projeto_gs1/screens/telaVisu.dart';
 
 class TelaInicial extends StatelessWidget {
@@ -66,6 +67,10 @@ class TelaInicial extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
+                    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => TelaHistorico()),
+      );
                   // Navegar para a tela de relatórios e análises
                 },
                 child: const Text('Relatórios e Análises'),

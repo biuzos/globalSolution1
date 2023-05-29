@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class TelaImagemDetalhada extends StatelessWidget {
   final String imageId;
   final String location;
@@ -11,11 +10,24 @@ class TelaImagemDetalhada extends StatelessWidget {
     required this.imageId,
     required this.location,
     required this.crop,
-    required this.area, 
+    required this.area,
   });
+
+  String getImagePathFromId(String id) {
+    Map<String, String> idToImagePath = {
+      'ID19924394': 'assets/drone2.jpg',
+      'ID20124381': 'assets/drone3.jpg',
+      'ID21364408': 'assets/drone4.jpeg',
+      'ID18974312': 'assets/drone5.jpg',
+      // Adicione mais mapeamentos de ID para caminho de arquivo conforme necessário
+    };
+    return idToImagePath[id] ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
+    String imagePath = getImagePathFromId(imageId);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Imagem $imageId'),
@@ -25,7 +37,7 @@ class TelaImagemDetalhada extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            getImagePathFromId(imageId),
+            imagePath,
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
               print('Error loading image: $error');
@@ -39,15 +51,5 @@ class TelaImagemDetalhada extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String getImagePathFromId(String id) {
-    Map<String, String> idToImagePath = {
-      'drone2': 'assets/drone2.jpg',
-      'drone3': 'assets/drone3.jpg',
-      'drone4': 'assets/drone4.jpeg',
-      'drone5': 'assets/drone5.jpg',
-    };
-    return idToImagePath[id] ?? '';
   }
 }
