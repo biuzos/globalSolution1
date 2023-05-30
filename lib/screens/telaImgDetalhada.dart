@@ -24,6 +24,7 @@ class TelaImagemDetalhada extends StatelessWidget {
     return idToImagePath[id] ?? '';
   }
 
+
   @override
   Widget build(BuildContext context) {
     String imagePath = getImagePathFromId(imageId);

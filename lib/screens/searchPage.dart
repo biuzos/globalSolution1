@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'telaImgDetalhada.dart';
 
 // Classe para representar uma imagem e suas informações
 class PlantImage {
@@ -38,16 +39,16 @@ class _TelaHistoricoState extends State<TelaHistorico> {
       crop: 'Milho',
       area: 8.2,
     ),
-       PlantImage(
+    PlantImage(
       id: 'ID21364408',
       imagePath: 'assets/drone4.jpeg',
       location: 'Goiás',
       crop: 'Algodão',
       area: 12.1,
     ),
-       PlantImage(
+    PlantImage(
       id: 'ID18974312',
-      imagePath: 'assets/drone3.jpg',
+      imagePath: 'assets/drone5.jpg',
       location: 'Bahia',
       crop: 'Café',
       area: 5.8,
@@ -71,19 +72,33 @@ class _TelaHistoricoState extends State<TelaHistorico> {
     super.dispose();
   }
 
-void filterImages(String searchTerm) {
-  setState(() {
-    if (searchTerm.isEmpty) {
-      filteredImages = images;
-    } else {
-      filteredImages = images.where((image) {
-        return image.id.toLowerCase().contains(searchTerm.toLowerCase()) ||
-            image.location.toLowerCase().contains(searchTerm.toLowerCase()) ||
-            image.crop.toLowerCase().contains(searchTerm.toLowerCase());
-      }).toList();
-    }
-  });
-}
+  void filterImages(String searchTerm) {
+    setState(() {
+      if (searchTerm.isEmpty) {
+        filteredImages = images;
+      } else {
+        filteredImages = images.where((image) {
+          return image.id.toLowerCase().contains(searchTerm.toLowerCase()) ||
+              image.location.toLowerCase().contains(searchTerm.toLowerCase()) ||
+              image.crop.toLowerCase().contains(searchTerm.toLowerCase());
+        }).toList();
+      }
+    });
+  }
+
+  void _openDetalhadaScreen(PlantImage image) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TelaImagemDetalhada(
+          imageId: image.id,
+          location: image.location,
+          crop: image.crop,
+          area: image.area,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,21 +124,24 @@ void filterImages(String searchTerm) {
               itemCount: filteredImages.length,
               itemBuilder: (context, index) {
                 final image = filteredImages[index];
-                return ListTile(
-                  leading: Image.asset(
-                    image.imagePath,
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
-                  ),
-                  title: Text('ID: ${image.id}'),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Localidade: ${image.location}'),
-                      Text('Plantação: ${image.crop}'),
-                      Text('Extensão: ${image.area} hectares'),
-                    ],
+                return GestureDetector(
+                  onTap: () => _openDetalhadaScreen(image),
+                  child: ListTile(
+                    leading: Image.asset(
+                      image.imagePath,
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.cover,
+                    ),
+                    title: Text('ID: ${image.id}'),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Localidade: ${image.location}'),
+                        Text('Plantação: ${image.crop}'),
+                        Text('Extensão: ${image.area} hectares'),
+                      ],
+                    ),
                   ),
                 );
               },
