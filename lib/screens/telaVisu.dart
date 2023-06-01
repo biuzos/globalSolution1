@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'telaImgDetalhada.dart';
 
 class TelaVisualizacaoImagens extends StatelessWidget {
-  static String generateImageIdFromCoordinates(double latitude, double longitude) {
-    String latString = latitude.toStringAsFixed(2).replaceAll(RegExp(r'[^\d]'), '');
-    String lonString = longitude.toStringAsFixed(2).replaceAll(RegExp(r'[^\d]'), '');
+  static String generateImageIdFromCoordinates(
+      double latitude, double longitude) {
+    String latString =
+        latitude.toStringAsFixed(2).replaceAll(RegExp(r'[^\d]'), '');
+    String lonString =
+        longitude.toStringAsFixed(2).replaceAll(RegExp(r'[^\d]'), '');
     return 'ID$latString$lonString';
   }
 
@@ -70,7 +73,8 @@ class TelaVisualizacaoImagens extends StatelessWidget {
           final image = droneImages[index];
           final double latitude = image['latitude'];
           final double longitude = image['longitude'];
-          final String imageId = generateImageIdFromCoordinates(latitude, longitude);
+          final String imageId =
+              generateImageIdFromCoordinates(latitude, longitude);
           final Map<String, dynamic> details = image['details'];
 
           return GestureDetector(
@@ -90,6 +94,8 @@ class TelaVisualizacaoImagens extends StatelessWidget {
             child: Center(
               child: Image.asset(
                 image['imagePath'],
+                width: 200, // Defina o valor desejado para o width
+                height: 200, // Defina o valor desejado para o height
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   print('Error loading image: $error');

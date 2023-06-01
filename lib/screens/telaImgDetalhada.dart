@@ -37,13 +37,15 @@ class TelaImagemDetalhada extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            imagePath,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              print('Error loading image: $error');
-              return const SizedBox.shrink();
-            },
+          Center(
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                print('Error loading image: $error');
+                return const SizedBox.shrink();
+              },
+            ),
           ),
           const SizedBox(height: 16.0),
           Text('Localidade: $location'),
